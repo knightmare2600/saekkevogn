@@ -1,4 +1,4 @@
-"""Logging setup. Per plan.txt: log everything to /var/log/saekkevogn/install.log,
+"""Logging setup: log everything to /var/log/saekkevogn/install.log,
 in addition to stdout (which saekkevogn-installer.service already sends to both the
 journal and the console).
 """

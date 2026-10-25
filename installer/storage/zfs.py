@@ -1,4 +1,4 @@
-"""ZFS mirror pool creation. Properties per plan.txt verbatim: ashift=12,
+"""ZFS mirror pool creation. Pool properties: ashift=12,
 compression=lz4, atime=off, xattr=sa, acltype=posixacl.
 
 Uses zpool's -R altroot instead of manually managing mountpoints -- datasets
