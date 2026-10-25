@@ -284,8 +284,10 @@ boot
 
 `${site-prefix}-pbs-answer.toml` is deliberately not
 `${site-prefix}-answer.toml`, which is already Klargøring's PVE answer
-file. The `-pbs-` naming is a presumption pending confirmation, and no
-per-site `-pbs-answer.toml` file exists yet. As with every entry in that
+file. The estate has `VRK-pbs-answer.toml` and `FRD-pbs-answer.toml`
+(added 2026-10-25), generated from the PVE files so the root password
+hash and SSH key stay identical; the harness's SSH-key consistency check
+covers them. As with every entry in that
 menu, the site is resolved in iPXE (gateway-based detection setting
 `${site-prefix}` and `${boot-url}`) — never hardcode one site's URL into
 a shared menu entry.

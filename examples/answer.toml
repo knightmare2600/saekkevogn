@@ -3,8 +3,8 @@
 # answer TOML") -- not a real site's file. Real per-site
 # files live on the provisioning server as bootstrap/web/proxmox/<SITE>-pbs-answer.toml
 # and are fetched dynamically by menu.ipxe, never checked in here. The -pbs-
-# infix is a presumption pending confirmation: <SITE>-answer.toml at that
-# same path is already Klargøring's (PVE) answer file, so PBS needs its own.
+# infix keeps them apart from <SITE>-answer.toml at that same path, which is
+# Klargøring's (PVE) answer file.
 
 [global]
 keyboard = "en-gb"
@@ -30,4 +30,4 @@ disk-list = ["sda", "sdb"]
 [first-boot]
 source = "from-url"
 ordering = "fully-up"
-url = "http://192.168.139.50/proxmox/pbs-first-boot.sh"
+url = "http://192.168.139.50/proxmox/first-boot.sh"
