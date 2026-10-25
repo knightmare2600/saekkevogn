@@ -21,6 +21,7 @@ Klargøring uses `klargoring`.
 | | amd64 | arm64 |
 |---|---|---|
 | Initrd + kernel + ISO build (CI) | ✅ `saekkevogn-20261025-trixie-2` | ✅ `saekkevogn-20261025-trixie-2` |
+| Install + first boot in a VM | ✅ 2026-10-25, 2-disk mirror | ❌ not yet tested |
 | Install on real hardware | ❌ not yet tested | ❌ not yet tested |
 | PBS server package | official (PBS repo) | **unofficial** (qemus, see [arm64](#arm64)) |
 
@@ -28,6 +29,13 @@ Klargøring itself is confirmed end to end on real disks; none of that
 carries over to Sækkevogn automatically. What *has* been verified for
 Sækkevogn:
 
+- **amd64 install (VM):** on 2026-10-25 Robert PXE-booted `:saekkevogn`
+  from the estate's `menu.ipxe` on a VMware VM with two disks, using
+  release `saekkevogn-20261025-trixie-2`, and it installed and worked as
+  expected. That release predates the degraded (single-disk) build, so
+  this covers the standard 2-disk mirror only. An earlier attempt on the
+  same VM with one disk failed at the disk check (`/dev/sdb does not
+  exist`), which is what prompted the degraded build.
 - **Builds:** GitHub Actions run `40181170038` (2026-10-25, 8 minutes)
   built the initrd, kernel and ISO for both arches and published release
   `saekkevogn-20261025-trixie-2`. The installer kernel is Debian's
@@ -51,8 +59,10 @@ Sækkevogn:
   fetched through apt's own signature checking, temporary apt state
   cleaned up) (2026-10-25).
 
-Not yet verified: a real install and first boot on either arch, and apt's
-version-constraint resolution on a real arm64 system.
+Not yet verified: an install on real hardware (either arch), any arm64
+install (including apt's version-constraint resolution with the qemus
+package), and the degraded single-disk build, which needs a release
+containing `b1cc531`.
 
 ## Why this exists
 
@@ -376,7 +386,8 @@ contract as Klargøring, parsed field for field. See
 
 ## Known limitations
 
-- Untested on real hardware (see [Status](#status)).
+- amd64 has only been installed in a VM, and arm64 not at all; neither
+  has been tested on real hardware (see [Status](#status)).
 - arm64: the PBS server package is unofficial and doesn't update via apt
   (see [arm64](#arm64)).
 - No PBS datastore is created, and that is deliberate. The installed
